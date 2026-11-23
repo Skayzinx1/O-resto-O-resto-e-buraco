@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <defs>
+    <radialGradient id="g" cx="50%" cy="40%" r="60%"><stop offset="0" stop-color="#d9b98a"/><stop offset="1" stop-color="#7a5630"/></radialGradient>
+    <path id="arcoCima" d="M30,100 a70,70 0 0,1 140,0"/>
+    <path id="arcoBaixo" d="M38,100 a62,62 0 0,0 124,0"/>
+  </defs>
+  <circle cx="100" cy="100" r="96" fill="#1a0a06" stroke="#b08a5a" stroke-width="4"/>
+  <circle cx="100" cy="100" r="86" fill="none" stroke="#b08a5a" stroke-width="2" stroke-dasharray="3 4"/>
+  <text font-family="Georgia,serif" font-weight="bold" font-size="22" fill="#d9b98a" letter-spacing="4"><textPath href="#arcoCima" startOffset="50%" text-anchor="middle">HAWKINS</textPath></text>
+  <text font-family="Georgia,serif" font-weight="bold" font-size="16" fill="#d9b98a" letter-spacing="3"><textPath href="#arcoBaixo" startOffset="50%" text-anchor="middle">POLICE • DEPT</textPath></text>
+  <polygon points="100,52 111,84 145,84 118,104 128,137 100,117 72,137 82,104 55,84 89,84" fill="url(#g)" stroke="#3a2412" stroke-width="2"/>
+  <circle cx="100" cy="100" r="13" fill="#2a1408" stroke="#d9b98a" stroke-width="2"/>
+  <text x="100" y="105" font-family="Georgia,serif" font-size="13" fill="#d9b98a" text-anchor="middle">H</text>
+</svg>

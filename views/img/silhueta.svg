@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 200">
+  <rect width="300" height="200" fill="#1c0a0a"/>
+  <g fill="#3d1a1a"><circle cx="150" cy="78" r="34"/><path d="M85 200 C90 135 115 120 150 120 C185 120 210 135 215 200 Z"/></g>
+  <text x="150" y="188" font-family="Courier New,monospace" font-size="14" fill="#b3131b" text-anchor="middle" letter-spacing="3">SEM FOTO</text>
+</svg>
