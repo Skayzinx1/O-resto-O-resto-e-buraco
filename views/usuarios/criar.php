@@ -25,8 +25,16 @@
 
             <div class="form-group">
                 <label for="senha">Senha:</label>
-                <input type="password" id="senha" name="senha" required minlength="6" class="form-control">
-                <small class="text-muted">Mínimo de 6 caracteres.</small>
+                <input type="password" id="senha" name="senha" required minlength="4" class="form-control">
+                <small class="text-muted">Mínimo de 4 caracteres.</small>
+            </div>
+
+            <div class="form-group">
+                <label for="tipo">Tipo de usuário:</label>
+                <select id="tipo" name="tipo" class="form-select">
+                    <option value="investigador">Investigador (só vê o site)</option>
+                    <option value="admin">Administrador (acessa o painel)</option>
+                </select>
             </div>
 
             <div class="mt-3 d-flex gap-2">

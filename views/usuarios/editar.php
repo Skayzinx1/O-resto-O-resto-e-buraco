@@ -25,8 +25,21 @@
 
             <div class="form-group">
                 <label for="senha">Nova senha:</label>
-                <input type="password" id="senha" name="senha" minlength="6" class="form-control">
+                <input type="password" id="senha" name="senha" minlength="4" class="form-control">
                 <small class="text-muted">Deixe em branco para manter a senha atual.</small>
+            </div>
+
+            <div class="form-group">
+                <label for="tipo">Tipo de usuário:</label>
+                <?php if ($usuario['id'] == $_SESSION['usuario']['id']): ?>
+                    <input type="hidden" name="tipo" value="admin">
+                    <input type="text" value="Administrador (você não pode tirar o seu próprio acesso)" class="form-control" disabled>
+                <?php else: ?>
+                    <select id="tipo" name="tipo" class="form-select">
+                        <option value="investigador" <?= $usuario['tipo'] == 'investigador' ? 'selected' : '' ?>>Investigador (só vê o site)</option>
+                        <option value="admin" <?= $usuario['tipo'] == 'admin' ? 'selected' : '' ?>>Administrador (acessa o painel)</option>
+                    </select>
+                <?php endif; ?>
             </div>
 
             <div class="mt-3 d-flex gap-2">

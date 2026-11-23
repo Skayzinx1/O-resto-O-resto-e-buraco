@@ -33,7 +33,9 @@
 
                 <nav class="menu-usuario">
                     <span class="nome-usuario">Olá, <?= htmlspecialchars($primeiroNome) ?></span>
-                    <a href="/Trabalho_Lp3/painel" class="btn btn-outline-danger btn-sm">Painel</a>
+                    <?php if (isset($_SESSION['usuario']['tipo']) && $_SESSION['usuario']['tipo'] == 'admin'): ?>
+                        <a href="/Trabalho_Lp3/painel" class="btn btn-outline-danger btn-sm">Painel</a>
+                    <?php endif; ?>
                     <a href="/Trabalho_Lp3/sair">Sair</a>
                 </nav>
             <?php endif; ?>

@@ -30,7 +30,8 @@ class LoginController {
             if ($usuario && password_verify($senha, $usuario['senha'])) {
                 $_SESSION['usuario'] = [
                     'id' => $usuario['id'],
-                    'nome' => $usuario['nome']
+                    'nome' => $usuario['nome'],
+                    'tipo' => $usuario['tipo']
                 ];
                 header('Location: /Trabalho_Lp3/');
                 exit;

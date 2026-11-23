@@ -8,6 +8,7 @@ CREATE TABLE `usuarios` (
   `nome` varchar(100) NOT NULL,
   `email` varchar(100) NOT NULL UNIQUE,
   `senha` varchar(255) NOT NULL,
+  `tipo` varchar(20) NOT NULL DEFAULT 'investigador',
   `criado_em` timestamp DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -79,8 +80,8 @@ CREATE TABLE `produtos` (
   FOREIGN KEY (`id_categoria`) REFERENCES `categorias` (`id`) ON DELETE SET NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-INSERT INTO `usuarios` (`nome`, `email`, `senha`) VALUES
-('Jim Hopper', 'admin@hawkins.com', '$2y$10$aPwOSnVaNeeMT0.AwdcWV.kx1KXxR8PjElLgyh7qwbSZdqt3P6uOe');
+INSERT INTO `usuarios` (`nome`, `email`, `senha`, `tipo`) VALUES
+('Las Vegas', 'lasvegas@gmail.com', '$2y$10$jzTVZk2fKWAUDFp0mELyVe38IKzE3OjQ7eS19bdT6ZfONEbpnzvPC', 'admin');
 
 INSERT INTO `locais` (`id`, `nome`, `tipo`, `descricao`, `pos_x`, `pos_y`) VALUES
 (1, 'Laboratório Nacional de Hawkins', 'perigo', 'Área restrita do governo. Foi aqui que abriram o primeiro portal para o Mundo Invertido.', 42, 45),

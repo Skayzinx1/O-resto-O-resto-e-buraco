@@ -12,34 +12,35 @@ class Usuario {
 
     public function listar() {
 
-        $stmt = $this->db->query("select id, nome, email, criado_em from $this->tabela order by id asc");
+        $stmt = $this->db->query("select id, nome, email, tipo, criado_em from $this->tabela order by id asc");
         return $stmt->fetchAll();
 
     }
 
-    public function salvar(string $nome, string $email, string $senha) {
+    public function salvar(string $nome, string $email, string $senha, string $tipo = 'investigador') {
 
-        $sql = "insert into $this->tabela (nome, email, senha) values (:nome, :email, :senha)";
+        $sql = "insert into $this->tabela (nome, email, senha, tipo) values (:nome, :email, :senha, :tipo)";
         $stmt = $this->db->prepare($sql);
 
         $values = [
             ':nome' => $nome,
             ':email' => $email,
-            ':senha' => password_hash($senha, PASSWORD_DEFAULT)
+            ':senha' => password_hash($senha, PASSWORD_DEFAULT),
+            ':tipo' => $tipo
         ];
 
         return $stmt->execute($values);
 
     }
 
-    public function atualizar(int $id, string $nome, string $email, ?string $senha) {
+    public function atualizar(int $id, string $nome, string $email, ?string $senha, string $tipo) {
 
         if ($senha) {
-            $sql = "update $this->tabela set nome = :nome, email = :email, senha = :senha where id = :id";
-            $values = [':nome' => $nome, ':email' => $email, ':senha' => password_hash($senha, PASSWORD_DEFAULT), ':id' => $id];
+            $sql = "update $this->tabela set nome = :nome, email = :email, senha = :senha, tipo = :tipo where id = :id";
+            $values = [':nome' => $nome, ':email' => $email, ':senha' => password_hash($senha, PASSWORD_DEFAULT), ':tipo' => $tipo, ':id' => $id];
         } else {
-            $sql = "update $this->tabela set nome = :nome, email = :email where id = :id";
-            $values = [':nome' => $nome, ':email' => $email, ':id' => $id];
+            $sql = "update $this->tabela set nome = :nome, email = :email, tipo = :tipo where id = :id";
+            $values = [':nome' => $nome, ':email' => $email, ':tipo' => $tipo, ':id' => $id];
         }
 
         $stmt = $this->db->prepare($sql);

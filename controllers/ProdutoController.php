@@ -6,8 +6,8 @@ class ProdutoController {
 
     public function __construct()
     {
-        if (!isset($_SESSION['usuario'])) {
-            header('Location: /Trabalho_Lp3/login');
+        if (!isset($_SESSION['usuario']['tipo']) || $_SESSION['usuario']['tipo'] != 'admin') {
+            header('Location: /Trabalho_Lp3/');
             exit;
         }
         $this->model = new Produto();

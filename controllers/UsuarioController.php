@@ -4,8 +4,8 @@ class UsuarioController {
 
     public function __construct()
     {
-        if (!isset($_SESSION['usuario'])) {
-            header('Location: /Trabalho_Lp3/login');
+        if (!isset($_SESSION['usuario']['tipo']) || $_SESSION['usuario']['tipo'] != 'admin') {
+            header('Location: /Trabalho_Lp3/');
             exit;
         }
         $this->model = new Usuario();
@@ -24,17 +24,18 @@ class UsuarioController {
             $nome = trim(filter_input(INPUT_POST, 'nome') ?? '');
             $email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
             $senha = filter_input(INPUT_POST, 'senha') ?? '';
+            $tipo = $_POST['tipo'] == 'admin' ? 'admin' : 'investigador';
 
-            if($nome && $email && strlen($senha) >= 6) {
+            if($nome && $email && strlen($senha) >= 4) {
                 if ($this->model->buscarPorEmail($email)) {
                     $erro = 'Esse e-mail já está cadastrado.';
                 } else {
-                    $this->model->salvar($nome, $email, $senha);
+                    $this->model->salvar($nome, $email, $senha, $tipo);
                     header('Location: /Trabalho_Lp3/usuarios');
                     exit;
                 }
             } else {
-                $erro = 'Preencha nome, e-mail válido e senha com pelo menos 6 caracteres.';
+                $erro = 'Preencha nome, e-mail válido e senha com pelo menos 4 caracteres.';
             }
         }
 
@@ -55,13 +56,23 @@ class UsuarioController {
             $nome = trim(filter_input(INPUT_POST, 'nome') ?? '');
             $email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
             $senha = filter_input(INPUT_POST, 'senha') ?? '';
+            $tipo = $_POST['tipo'] == 'admin' ? 'admin' : 'investigador';
 
-            if($nome && $email && ($senha === '' || strlen($senha) >= 6)) {
-                $this->model->atualizar($id, $nome, $email, $senha ?: null);
+            if ($id == $_SESSION['usuario']['id']) {
+                $tipo = 'admin';
+            }
+
+            if($nome && $email && ($senha === '' || strlen($senha) >= 4)) {
+                $this->model->atualizar($id, $nome, $email, $senha ?: null, $tipo);
+
+                if ($id == $_SESSION['usuario']['id']) {
+                    $_SESSION['usuario']['nome'] = $nome;
+                }
+
                 header('Location: /Trabalho_Lp3/usuarios');
                 exit;
             }
-            $erro = 'Preencha nome e e-mail válido. A nova senha, se informada, precisa ter 6 caracteres.';
+            $erro = 'Preencha nome e e-mail válido. A nova senha, se informada, precisa ter pelo menos 4 caracteres.';
         }
 
         $usuario = $this->model->buscarPorId($id);
